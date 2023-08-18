@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 //import { crearNuevoProductoAction } from "../actions/productosActions"
 import { useState } from "react"
 import { crearNuevoProductoAction } from "../reducers/productosReducer"
+import { useNavigate } from "react-router-dom"
 
-const NuevoProducto = () => {
+const NuevoProducto = ({ history }) => {
 
     //state del componente
     const [nombre, setNombre] = useState('')
@@ -12,6 +13,13 @@ const NuevoProducto = () => {
 
     //utilizar usedispatch
     const dispatch = useDispatch()
+
+    //accerder al state del state
+    const cargando = useSelector(state => state.productos.loading)
+    console.log(cargando);
+    const error = useSelector(state => state.productos.error)
+
+    const navigate = useNavigate()
     //mandart llamar el action de productoAction
     const agregarProducto = producto => dispatch(crearNuevoProductoAction(producto))
 
@@ -29,6 +37,9 @@ const NuevoProducto = () => {
             nombre,
             precio
         })
+
+        //redireccionar
+        navigate('/')
     }
     return (
         <div className="row justify-content-center">
@@ -73,6 +84,9 @@ const NuevoProducto = () => {
                                 Agregar
                             </button>
                         </form>
+
+                        {cargando ? <p>Cargando...</p> : null}
+                        {error ? <p className="alert alert-danger p2 mt-4 text-center">Hubo un Error</p> : null}
                     </div>
 
                 </div>
