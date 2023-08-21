@@ -1,8 +1,7 @@
 //actions de redux
 import { useDispatch, useSelector } from "react-redux"
-//import { crearNuevoProductoAction } from "../actions/productosActions"
 import { useState } from "react"
-import { crearNuevoProductoAction } from "../reducers/productosReducer"
+import { crearNuevoProductoAction } from "../features/productos/productosSlice"
 import { useNavigate } from "react-router-dom"
 
 const NuevoProducto = ({ history }) => {

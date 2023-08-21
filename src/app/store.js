@@ -1,9 +1,6 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import reducer from './reducers'
-import productoReducer from './reducers/productosReducer'
+import productoReducer from '../features/productos/productosSlice'
 
 /*
 const store = createStore(
