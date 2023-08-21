@@ -17,6 +17,7 @@ const EditarProducto = () => {
     const productoeditar = useSelector(state => state.productos.productoeditar)
 
     //lernar el state automaticamente
+    
     useEffect(() => {
         setProducto(productoeditar)
     }, [productoeditar])
