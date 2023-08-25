@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nombre": "Jugo de Zanahoria",
-      "precio": "31"
+      "precio": "318"
     },
     {
       "id": 2,
@@ -19,6 +19,11 @@
       "nombre": "Rib Eye 800g",
       "precio": "555",
       "id": 4
+    },
+    {
+      "nombre": "naranjas",
+      "precio": 50,
+      "id": 5
     }
   ]
 }

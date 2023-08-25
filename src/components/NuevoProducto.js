@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { crearNuevoProductoAction } from "../features/productos/productosSlice"
+import { mostrarAlertaAction, ocultarAlertaAction } from "../features/productos/alertaSlice"
 import { useNavigate } from "react-router-dom"
 
 const NuevoProducto = ({ history }) => {
@@ -15,8 +16,8 @@ const NuevoProducto = ({ history }) => {
 
     //accerder al state del state
     const cargando = useSelector(state => state.productos.loading)
-    console.log(cargando);
     const error = useSelector(state => state.productos.error)
+    const alerta = useSelector(state => state.alertas.alerta)
 
     const navigate = useNavigate()
     //mandart llamar el action de productoAction
@@ -27,10 +28,18 @@ const NuevoProducto = ({ history }) => {
         e.preventDefault()
         //validar formulario
         if (nombre.trim() === '' || precio <= 0) {
+
+            const alerta = {
+                msg: 'Ambos campos son obligatorios',
+                classes: 'alert alert-danger text-center text-uppercase p3'
+            }
+            dispatch(mostrarAlertaAction(alerta))
+
             return
         }
         //si no hay errores
-
+        dispatch(ocultarAlertaAction())
+        
         //crear el nuevo producto
         agregarProducto({
             nombre,
@@ -48,6 +57,8 @@ const NuevoProducto = ({ history }) => {
                         <h2 className="text-center mb-4 font-weight-bold">
                             Agregar Nuevo Producto
                         </h2>
+
+                        {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
                         <form
                             onSubmit={submitNuevoProducto}
                         >
